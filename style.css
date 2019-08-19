@@ -85,3 +85,9 @@ body, content {
     font-size: 24px;
     font-weight: 100;
 }
+
+#err {
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+}
