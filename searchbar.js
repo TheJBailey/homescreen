@@ -65,6 +65,7 @@ function init() {
     window.addEventListener('keydown', handleKeyActions)
     window.addEventListener('mousedown', event => { event.preventDefault(); searchbar.focus() })
     searchbar.addEventListener('input', update)
+    searchbar.focus()
 }
 
 function update(event) {
