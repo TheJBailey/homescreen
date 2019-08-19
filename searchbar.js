@@ -9,8 +9,6 @@ var savedsites = []
 var suggestions = []
 var hist = []
 
-var allowkeys = "Backspace" || "Delete" || "ArrowLeft" || "ArrowRight" || "ArrowUp" || "ArrowDown"
-
 var commands = [
     {
         name: "scheme",
@@ -72,7 +70,7 @@ function init() {
 function update(event) {
     event = (event || window.event)
     var target = event.target || event.srcElement
-    echo(event)
+    // echo(event)
     var input = target.value.trim()
     var dsi = 0 // data start index
     if (input.startsWith(symbol)) {
@@ -81,7 +79,7 @@ function update(event) {
     }
     line.data = input.substring(wsi != -1 ? wsi + 1 : 0)
 
-    err ("prefix: " + line.prefix + " data: " + line.data)
+    // err ("prefix: " + line.prefix + " data: " + line.data)
 }
 
 function handleKeyActions(event) {
