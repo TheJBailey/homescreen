@@ -13,7 +13,7 @@ var data = {
 }
 
 var defaults = {
-    placeholder: "hi there...",
+    placeholder: "what can I do for you?",
     symbol: "/",
     queryurl: "https://duckduckgo.com/?q=",
     savedsites: [],
@@ -76,17 +76,18 @@ function update(event) {
     event = (event || window.event)
     var target = event.target || event.srcElement
     //echo(event)
-    var input = target.value.trim()
+    var input = target.value
     var dsi = 0 // data start index
+    suggbar.placeholder = ""
     if (input.startsWith(data.symbol)) {
         var wsi = input.indexOf(" ") // whitespace index
         line.prefix = (wsi != -1 ? input.substring(1, wsi) : input.substring(1))
+        if (wsi == -1) suggestCommand(line.prefix)
     } else line.prefix = ""
-
-    suggestCommand(line.prefix)
+    
     line.data = wsi != -1 ? input.substring(wsi + 1) : ""
 
-    err ("prefix: " + line.prefix + " data: " + line.data)
+    err("prefix: " + line.prefix + " data: " + line.data)
 }
 
 function handleKeyActions(event) {
@@ -113,7 +114,6 @@ function handleKeyActions(event) {
 
 // possible change to get command suggestion and used returned value in update function rather than modifying here
 function suggestCommand(prefix) {
-    suggbar.placeholder = ""
     if (prefix == "") return
 
     commands.forEach(cmd => {
